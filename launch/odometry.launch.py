@@ -11,5 +11,6 @@ def generate_launch_description():
             name='odom_node',
             output='screen',
             parameters=[os.path.join(get_package_share_directory("b1_navigation"), 'config', 'odometry.yaml')],
-           ),
-])
+            remappings=[("odometry/filtered", "odom")]
+        ),
+    ])
