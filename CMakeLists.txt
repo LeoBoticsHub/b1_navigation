@@ -3,7 +3,7 @@ project(b1_navigation)
 
 
 find_package(ament_cmake REQUIRED)
-# find_package(robot_localization REQUIRED)
+find_package(pointcloud_to_laserscan REQUIRED)
 
 
 ament_package()
