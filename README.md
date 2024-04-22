@@ -22,7 +22,7 @@ There are docker images on B1 computers to run the application. To launch docker
 docker_factory_run -i b1/ros2_control
 ```
 
-or, if you use [robot_setup](https://github.com/LeoBoticsHub/robots_setup) bashrcs, from your laptop,
+or, if you use [robot_setup](https://github.com/LeoBoticsHub/robots_setup) bashrcs, from your pilot laptop,
 
 ```bash
 launch_ros2_control
