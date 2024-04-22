@@ -8,7 +8,7 @@ from launch.actions import DeclareLaunchArgument
 def generate_launch_description():
 
     pcd_input_arg = DeclareLaunchArgument(
-        name='pcd_input', default_value='velodyne_points',
+        name='pcd_input', default_value='lidar_points',
         description='Name of point cloud in input'
     )
 
