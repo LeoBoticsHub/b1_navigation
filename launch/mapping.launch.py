@@ -55,9 +55,7 @@ def generate_launch_description():
                           description='Use sim time'),
     DeclareLaunchArgument('sync', default_value='true',
                           choices=['true', 'false'],
-                          description='Use synchronous SLAM')#,
-    # DeclareLaunchArgument('namespace', default_value='',
-    #                       description='Robot namespace')
+                          description='Use synchronous SLAM')
     ]
 
     # namespace = LaunchConfiguration('namespace')
@@ -98,14 +96,11 @@ def generate_launch_description():
     ])
 
     ld = LaunchDescription(ARGUMENTS)
-    # ld.add_action(slam_params_arg)
     ld.add_action(slam)
-    # return ld
 
 
     # * ----- Launch description -----
 
-    # ld = LaunchDescription()
     ld.add_action(pcd_input_arg)
     ld.add_action(scan_output_arg)
     ld.add_action(lidar_frame)
