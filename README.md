@@ -1,53 +1,41 @@
 # b1_navigation
 
-The ros2 navigation stack adapted to b1 robot
+The ros2 navigation stack adapted to b1 robot. For using it be sure to have started ros2 controller and lidar on the robot. More information on setup and the use of this package can be found on [Navigation_hub](https://github.com/LeoBoticsHub/navigation_hub/blob/main/docs/B1/main.md) repo.
 
 ## Mapping with slam_toolbox
 
-For launching slam_toolbox 2D mapping on B1, be sure to have started ros2 controller and lidar and run the following.
+For launching slam_toolbox 2D mapping on B1, run the following.
 
 ```bash
 ros2 launch b1_navigation mapping.launch.py
 ```
 
-### Docker images
+## Navigation with Nav2
 
-**TO CONCLUDE**
+The navigation can work either with its own SLAM or with a given map using a localization module. In the following the two alternatives documentation. Moreover, for using personal SLAM or localization, the navigation can be loaded as standalone.
 
-There are docker images on B1 computers to run the application. To launch dockers, use the [docker_factory](https://github.com/LeoBoticsHub/docker_factory) scripts as follows:
+### Standalone Nav2 Navigation
 
-- on B1 main computer:
-  
+To launch the navigation stack without internal mapping or localization, be sure that there is an external node which is publishing at least a map and the tf map -> odom.
+
+For launching the navigation type the following:
+
 ```bash
-docker_factory_run -i b1/ros2_control
+ros2 launch b1_navigation navigation.launch.py
 ```
 
-or, if you use [robot_setup](https://github.com/LeoBoticsHub/robots_setup) bashrcs, from your pilot laptop,
+### Nav2 with Mapping
+
+To launch the navigation stack with slam_toolbox mapping, type the following:
 
 ```bash
-launch_ros2_control
+ros2 launch b1_navigation navigation.launch.py mapping:=true
 ```
 
-- on B1 Jetson NX2:
+### Nav2 with AMCL Localization
+
+To launch the navigation stack with AMCL localization, type the following:
 
 ```bash
-docker_factory_run -i b1/xavier/hesai_lidar
-```
-
-or, if you use [robot_setup](https://github.com/LeoBoticsHub/robots_setup) bashrcs, from your laptop,
-
-```bash
-launch_lidar
-```
-
-- on B1 Jetson NX3: (TO BE CHANGED ONCE FINISHED)
-  
-```bash
-docker_factory_run -i b1/xavier/navigation
-```
-
-or, if you use [robot_setup](https://github.com/LeoBoticsHub/robots_setup) bashrcs, from your laptop,
-
-```bash
-launch_navigation
+ros2 launch b1_navigation navigation.launch.py localization:=true
 ```
