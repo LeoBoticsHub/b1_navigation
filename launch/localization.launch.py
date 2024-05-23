@@ -7,6 +7,34 @@ from ament_index_python.packages import get_package_share_directory
 import os
 
 def generate_launch_description():
+
+     # * ----- Pointcloud to Laserscan -----
+
+    # Pointcloud_to_laserscan Node
+    pcd_to_lsr = Node(
+        package='pointcloud_to_laserscan', 
+        executable='pointcloud_to_laserscan_node',
+        remappings=[('cloud_in', LaunchConfiguration('pcd_input')),
+                    ('scan', LaunchConfiguration('scan_output'))],
+        parameters=[{
+            'target_frame': LaunchConfiguration('lidar_frame'),
+            'transform_tolerance': 0.01,
+            'min_height': -0.7,
+            'max_height': 0.3,
+            'angle_min': -3.14, # M_PI
+            'angle_max': 3.14, # M_PI
+            'angle_increment': 0.0087,  # M_PI/360.0
+            'scan_time': 0.3333,
+            'range_min': 0.45,
+            'range_max': 60.0,
+            'use_inf': True,
+            'inf_epsilon': 1.0
+        }],
+        name='pointcloud_to_laserscan'
+    )
+
+    # * ----- localization -----
+
     map_file = LaunchConfiguration("map_file")
     use_sim_time = LaunchConfiguration("use_sim_time")
 
@@ -48,13 +76,26 @@ def generate_launch_description():
     )
     
     return LaunchDescription([
-            DeclareLaunchArgument(
-                "map_file", description="Full path to map yaml file to load"
-            ),
-            DeclareLaunchArgument(
-                "use_sim_time",
-                default_value="true",
-                description="Whether to use simulation (Gazebo) clock",
-            ),
-            load_localization_nodes
+        DeclareLaunchArgument(
+            name='pcd_input', default_value='lidar_points',
+            description='Name of point cloud in input'
+        ),
+        DeclareLaunchArgument(
+            name='scan_output', default_value='scan',
+            description='Name of laserscan in output'
+        ),
+        DeclareLaunchArgument(
+            name='lidar_frame', default_value='hesai_lidar',
+            description='Name of the lidar tf'
+        ),
+        pcd_to_lsr,
+        DeclareLaunchArgument(
+            "map_file", description="Full path to map yaml file to load"
+        ),
+        DeclareLaunchArgument(
+            "use_sim_time",
+            default_value="true",
+            description="Whether to use simulation (Gazebo) clock",
+        ),
+        load_localization_nodes
     ])
