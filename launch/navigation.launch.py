@@ -19,6 +19,8 @@ ARGUMENTS = [
     DeclareLaunchArgument('mapping', default_value='false',
                           choices=['true', 'false'],
                           description='Use sim time'),
+    DeclareLaunchArgument('map_file', default_value='map',
+                          description='The name of the map to load with map server'),
     DeclareLaunchArgument('localization', default_value='false',
                           choices=['true', 'false'],
                           description='Use sim time'),
@@ -36,6 +38,7 @@ def launch_setup(context, *args, **kwargs):
 
     nav2_params = LaunchConfiguration('params_file')
     use_sim_time = LaunchConfiguration('use_sim_time')
+    map_file = LaunchConfiguration('map_file')
 
     launch_nav2 = PathJoinSubstitution(
         [get_package_share_directory('nav2_bringup'), 'launch', 'navigation_launch.py']
@@ -69,7 +72,11 @@ def launch_setup(context, *args, **kwargs):
             PythonExpression(
                 ["'", LaunchConfiguration('localization'), "' == 'true' and '", LaunchConfiguration('mapping'), "' == 'false'"]
             )
-        )
+        ),
+        launch_arguments=[
+            ('use_sim_time', use_sim_time),
+            ('map_file', map_file)
+        ]
     )
 
     nav2 = GroupAction([
