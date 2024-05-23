@@ -36,7 +36,7 @@ def generate_launch_description():
     # * ----- localization -----
 
     map_file = LaunchConfiguration("map_file")
-    use_sim_time = LaunchConfiguration("use_sim_time")
+    use_sim_time = LaunchConfiguration("use_sim_time", default=True)
 
     lifecycle_node_names = ["map_server", "amcl"]
 
