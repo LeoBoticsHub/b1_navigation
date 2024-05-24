@@ -42,8 +42,8 @@ def generate_launch_description():
 
     localization_params = os.path.join(get_package_share_directory("b1_navigation"), 'config', 'localization.yaml')
 
-    load_localization_nodes = GroupAction(
-        map_server = Node(
+    load_localization_nodes = GroupAction([
+        Node(
             package="nav2_map_server",
             executable="map_server",
             name="map_server",
@@ -53,14 +53,14 @@ def generate_launch_description():
                 {"yaml_filename": map_file},
             ],
         ),
-        amcl = Node(
+        Node(
             package="nav2_amcl",
             executable="amcl",
             name="amcl",
             output="screen",
             parameters=[localization_params],
         ),
-        lifecycle = Node(
+        Node(
             package="nav2_lifecycle_manager",
             executable="lifecycle_manager",
             name="lifecycle_manager_localization",
@@ -73,7 +73,7 @@ def generate_launch_description():
                 }
             ],
         )
-    )
+    ])
     
     return LaunchDescription([
         DeclareLaunchArgument(
