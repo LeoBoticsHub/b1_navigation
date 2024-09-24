@@ -17,9 +17,9 @@ odom_node:
 
       # FRAMES
       # map_frame: map
-      odom_frame: odom           
-      base_link_frame: trunk    
-      world_frame: odom           
+      odom_frame: b1/odom           
+      base_link_frame: b1/trunk    
+      world_frame: b1/odom           
 
       # ODOM 
       odom0: robot_odom

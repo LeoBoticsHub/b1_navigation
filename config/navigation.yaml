@@ -1,8 +1,8 @@
 bt_navigator:
   ros__parameters:
     use_sim_time: True
-    global_frame: map
-    robot_base_frame: trunk
+    global_frame: b1/map
+    robot_base_frame: b1/trunk
     odom_topic: /robot_odom
     enable_groot_monitoring: True
     groot_zmq_publisher_port: 1666
@@ -108,8 +108,8 @@ local_costmap:
     ros__parameters:
       update_frequency: 5.0
       publish_frequency: 2.0
-      global_frame: odom
-      robot_base_frame: trunk
+      global_frame: b1/odom
+      robot_base_frame: b1/trunk
       use_sim_time: True
       rolling_window: true
       width: 8
@@ -152,8 +152,8 @@ global_costmap:
     ros__parameters:
       update_frequency: 1.0
       publish_frequency: 1.0
-      global_frame: map
-      robot_base_frame: trunk
+      global_frame: b1/map
+      robot_base_frame: b1/trunk
       use_sim_time: True
       footprint: "[ [0.6, 0.3], [0.6, -0.3], [-0.6, -0.3], [-0.6, 0.3] ]"
       resolution: 0.05
@@ -224,8 +224,8 @@ recoveries_server:
       plugin: "nav2_recoveries/BackUp"
     wait:
       plugin: "nav2_recoveries/Wait"
-    global_frame: odom
-    robot_base_frame: trunk
+    global_frame: b1/odom
+    robot_base_frame: b1/trunk
     transform_timeout: 0.1
     use_sim_time: true
     simulate_ahead_time: 2.0
@@ -248,5 +248,5 @@ velocity_smoother:
     velocity_timeout: 1.0  # Time (s) after which if no new velocity commands are received to zero out and stop
     max_accel: [2.5, 2.5, 3.2]  # Maximum acceleration, ordered [Ax, Ay, Aw]
     max_decel: [-2.5, -2.5, -3.2]  # Maximum deceleration, ordered [Ax, Ay, Aw]
-    odom_topic: "odom"  # Topic of odometry to use for estimating current velocities
+    odom_topic: "robot_odom"  # Topic of odometry to use for estimating current velocities
     odom_duration: 0.1  # Period of time (s) to sample odometry information in for velocity estimation

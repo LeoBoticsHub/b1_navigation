@@ -85,7 +85,7 @@ def generate_launch_description():
             description='Name of laserscan in output'
         ),
         DeclareLaunchArgument(
-            name='lidar_frame', default_value='hesai_lidar',
+            name='lidar_frame', default_value='b1/hesai_lidar',
             description='Name of the lidar tf'
         ),
         pcd_to_lsr,
