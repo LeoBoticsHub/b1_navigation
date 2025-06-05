@@ -1,6 +1,6 @@
 # b1_navigation
 
-The ros2 navigation stack adapted to b1 robot. For using it be sure to have started ros2 controller and lidar on the robot. More information on setup and the use of this package can be found on [Navigation_hub](https://github.com/LeoBoticsHub/navigation_hub/blob/main/docs/B1/main.md) repo.
+The ros2 navigation stack adapted to the B1 robot. For using it be sure to have started ros2 controller and lidar on the robot. More information on setup and the use of this package can be found on [Navigation_hub](https://github.com/LeoBoticsHub/navigation_hub/blob/main/docs/B1/main.md) repo.
 
 ## Mapping with slam_toolbox
 
